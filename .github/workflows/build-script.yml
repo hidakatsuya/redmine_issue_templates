@@ -32,3 +32,4 @@ jobs:
         with:
           name: issue_templates.${{ github.sha }}.js
           path: assets/javascripts/issue_templates.js
+          compression-level: 0
