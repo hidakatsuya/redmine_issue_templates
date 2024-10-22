@@ -1,5 +1,7 @@
 # Redmine Issue Templates Plugin
 
+dummy
+
 [![Plugin info at redmine.org](https://img.shields.io/badge/Redmine-plugin-green.svg?)](http://www.redmine.org/plugins/redmine_issue_templates)
 [![Sider](https://img.shields.io/badge/Special%20Thanks!-Sider-blue.svg?)](https://sider.review/features)
 
