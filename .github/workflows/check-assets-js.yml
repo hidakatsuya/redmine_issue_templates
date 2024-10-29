@@ -27,9 +27,11 @@ jobs:
       - name: Compare the expected and actual assets/javascripts/issue_templates.js
         run: |
           if [ "$(git diff --ignore-space-at-eol assets/javascripts/ | wc -l)" -gt "0" ]; then
-            cat <<MSG
-              assets/javascripts/issue_templates.js is out of date.
-              Please build and push again according to the "6. Building Scripts" section in README.md.
-            MSG
+            message="assets/javascripts/issue_templates.js is out of date. Please build and push again according to the \"Build scripts\" section in README.md."
+            echo $message
+
+            # Also add the message to the GitHub step summary
+            echo "## :x: assets/javascripts/issue_templates.js is out of date" >> $GITHUB_STEP_SUMMARY
+            echo $message >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
