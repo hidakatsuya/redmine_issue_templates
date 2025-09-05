@@ -11,7 +11,12 @@ require 'selenium-webdriver'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/test/fixtures"
+  if config.respond_to?(:fixture_paths)
+    config.fixture_paths = ["#{::Rails.root}/test/fixtures"]
+  else
+    config.fixture_path = "#{::Rails.root}/test/fixtures"
+  end
+
   config.include FactoryBot::Syntax::Methods
 
   config.before :suite do
