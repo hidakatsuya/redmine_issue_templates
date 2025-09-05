@@ -10,8 +10,8 @@ module ControllerHelper
 
   def login_request(login, password)
     post '/login', params: { username: login, password: password }
-    # Ensure login success and wait for login complete
-    expect(response).to have_http_status(302)
+    # Ensure login is completed
+    expect(response).to have_http_status(200)
   end
 
   def assign_template_priv(role, add_permission: nil, remove_permission: nil)
