@@ -10,7 +10,9 @@ module ControllerHelper
 
   def login_request(login, password)
     post '/login', params: { username: login, password: password }
-    assert_current_path '/my/page', ignore_query: true
+
+    # Ensure login success and wait for login complete
+    assert_selector '#loggedas'
   end
 
   def assign_template_priv(role, add_permission: nil, remove_permission: nil)
