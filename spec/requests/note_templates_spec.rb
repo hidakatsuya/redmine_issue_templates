@@ -12,7 +12,6 @@ RSpec.describe 'Note Template', type: :request do
   let(:project) { FactoryBot.create(:project_with_enabled_modules) }
   let(:tracker) { FactoryBot.create(:tracker, :with_default_status) }
   let(:role) { FactoryBot.create(:role, :manager_role) }
-  let(:target_template) { NoteTemplate.last }
 
   before do
     project.trackers << tracker
@@ -39,6 +38,8 @@ RSpec.describe 'Note Template', type: :request do
            { tracker_id: tracker.id, name: 'Note template name',
              description: 'Note template description', memo: 'Test memo', enabled: 1 } }
     expect(response).to have_http_status(302)
+
+    target_template = NoteTemplate.last
 
     post '/note_templates/load', params: { note_template: { note_template_id: target_template.id } }
     json = JSON.parse(response.body)
