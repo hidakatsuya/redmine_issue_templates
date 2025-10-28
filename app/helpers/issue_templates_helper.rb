@@ -1,4 +1,6 @@
 module IssueTemplatesHelper
+  include IssueTemplatesIconHelper
+
   def project_tracker?(tracker, project)
     return false unless tracker.present?
 

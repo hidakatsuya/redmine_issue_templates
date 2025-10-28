@@ -86,7 +86,7 @@ option.global {
     background-image: url("../images/issue_templates.png");
 }
 
-.icon-template {
+.icon-template:not(:has(svg)) {
     background: url("../images/issue_templates.png") no-repeat 3px center;
 }
 
