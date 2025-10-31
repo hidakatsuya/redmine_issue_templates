@@ -1,14 +1,14 @@
 <h2 class='global_issue_template'><%=h "#{l(:global_issue_templates)}" %></h2>
 <%= render partial: 'common/nodata', locals: { trackers: trackers } %>
 <div class='contextual issue_templates'>
-  <%= link_to(l(:label_new_templates),
+  <%= link_to(sprite_icon_or_label(:add, l(:label_new_templates)),
               { controller: 'global_issue_templates', action: 'new' }, class: 'icon icon-add') %>
-  <%= link_to(l(:global_note_templates, default: 'Global Note Templates'),
+  <%= link_to(sprite_icon_or_label(:template, l(:global_note_templates, default: 'Global Note Templates'), plugin: :redmine_issue_templates),
               { controller: 'global_note_templates', action: 'index' },
               class: 'icon icon-template') %>
-  <%= link_to(l(:label_settings),
+  <%= link_to(sprite_icon_or_label(:settings, l(:label_settings)),
               { controller: 'settings', action: 'plugin', id: 'redmine_issue_templates' },
-              class: 'issue_template icon plugins') %>
+              class: 'issue_template icon icon-settings plugins') %>
 </div>
 <div style='clear: both;'></div>
 
@@ -19,7 +19,9 @@
 <% end %>
 <% template_map.each_key do |tracker| %>
     <div class='template_box'>
-      <h3 class='template_tracker'><%= tracker.name %></h3>
+      <h3 class='template_tracker'>
+        <span class="icon icon-ticke"><%= sprite_icon_or_label :issue, tracker.name %></span>
+      </h3>
 
       <table class='list issues template_list ui-sortable table-sortable'>
         <thead>
@@ -49,7 +51,9 @@
               </td>
               <td>
                 <div class='template_tooltip_wrapper'>
-                  <a class='icon-only template_tooltip' title='<%= l(:label_preview) %>'></a>
+                  <a class='icon-only template_tooltip' title='<%= l(:label_preview) %>'>
+                    <%= sprite_icon_or_label(:template_preview, nil, plugin: :redmine_issue_templates, icon_only: true) %>
+                  </a>
                   <div class='wiki template_tooltip_body'>
                     <span class='title'><%= issue_template.title %></span>
                     <%= textilizable(issue_template.description) %>
@@ -60,7 +64,6 @@
                     <% end %>
                   </div>
                 </div>
-                </a>
               </td>
               <td class='hideable'><%=h issue_template.tracker.name %></td>
               <td class='hideable'><%=h issue_template.author %></td>
@@ -84,11 +87,11 @@
     <% end %>
 <% end %>
 
-<a id='orphaned_template_link' class='icon template_tooltip orphaned_template_link template-help collapsible collapsed'
+<a id='orphaned_template_link' class='icon icon-template template_tooltip orphaned_template_link template-help collapsible collapsed'
   title='<%= l(:orphaned_templates) %>'
   data-template-help-target='orphaned_templates'
   data-url='<%= orphaned_templates_global_issue_templates_path %>'>
-  <%= l(:orphaned_templates, default: 'Orphaned Templates') %>
+  <%= sprite_icon_or_label :template, l(:orphaned_templates, default: 'Orphaned Templates'), plugin: :redmine_issue_templates %>
 </a>
 
 <div id='orphaned_templates' style='display: none'></div>

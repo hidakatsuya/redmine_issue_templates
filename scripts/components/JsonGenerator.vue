@@ -12,7 +12,10 @@
          :title="l('help_for_this_field')"
          data-tooltip-area="builtin_fields_help_area"
          data-tooltip-content="builtin_fields_help_content">
-        {{ l('help_for_this_field') }}
+        <sprite-icon-or-label
+          icon="help"
+          :label="l('help_for_this_field')"
+        />
         <span class="tooltip-area" id="builtin_fields_help_area"></span>
       </a>
     </p>
@@ -30,8 +33,10 @@
         v-model="model.value"
       />
       <span style="margin-left: 4px;" class="icon icon-add" v-on:click="addField">
-
-        {{ l('button_add') }}
+        <sprite-icon-or-label
+          icon="add"
+          :label="l('button_add')"
+        />
       </span>
     </p>
     <div id="field_information" class="wiki" v-if="model.title != ''">
@@ -41,10 +46,16 @@
     <display-area :items="items" v-on:delete="deleteField" />
     <p>
       <span class="icon icon-reload" id="reset-json" v-on:click="loadField">
-        {{ l('button_reset') }}
+        <sprite-icon-or-label
+          icon="table-multiple"
+          :label="l('button_reset')"
+        />
       </span>
       <span class="icon icon-checked" v-on:click="applyJson">
-        {{ l('button_apply') }}
+        <sprite-icon-or-label
+          icon="checked"
+          :label="l('button_apply')"
+        />
       </span>
     </p>
     <!-- buildin field Generator -->
@@ -66,6 +77,7 @@
 <script>
 import DisplayArea from './DisplayArea.vue';
 import FieldValue from './FieldValue.vue';
+import SpriteIconOrLabel from './SpriteIconOrLabel.vue';
 
 const AVAILABLE_FORMATS = [
   'int',
@@ -89,7 +101,7 @@ export default {
     templateType: String,
     trackerPulldownId: String,
   },
-  components: { DisplayArea, FieldValue },
+  components: { DisplayArea, FieldValue, SpriteIconOrLabel },
   data() {
     return {
       json: '',

@@ -65,9 +65,7 @@ option.global {
 }
 
 .template_tracker {
-    background: url("../images/ticket.png") no-repeat 3px center;
     padding-top: 3px;
-    padding-left: 18px;
 }
 
 .template_box {
@@ -78,26 +76,32 @@ option.global {
     border: 1px solid #E4E4E4;
 }
 
-.icon-erase {
+.icon-lamp:not(:has(svg)) {
+  background-image: url("../images/lamp.png");
+}
+
+.icon-ticket:not(:has(svg)) {
+    background-image: url("../images/ticket.png");
+}
+
+.icon-erase:not(:has(svg)) {
     background-image: url("../images/eraser.png");
 }
 
-.icon-global_issue_templates {
+.icon-global_issue_templates:not(:has(svg)) {
     background-image: url("../images/issue_templates.png");
 }
 
-.icon-template {
-    background: url("../images/issue_templates.png") no-repeat 3px center;
+.icon-template:not(:has(svg)) {
+    background-image: url("../images/issue_templates.png");
 }
 
-.icon-hint {
-    background: url("../images/ticket.png") no-repeat 3px center;
+.icon-hint:not(:has(svg)) {
+    background-image: url("../images/ticket.png");
 }
 
-a.template_tooltip {
+.icon-template-preview:not(:has(svg)) {
     background-image: url("../images/preview.png");
-    background-repeat: no-repeat;
-    padding-left: 20px;
 }
 
 #issue_template-form textarea {
@@ -187,14 +191,6 @@ td.template_title {
 
 select.issue_template {
     width: 240px;
-}
-
-.issue_template.icon-only.settings {
-    background: url("../images/lamp.png") no-repeat 3px center;
-}
-
-.issue_template.icon.plugins {
-    background: url("../../../images/plugin.png") no-repeat 3px center;
 }
 
 .contextual.issue_templates {

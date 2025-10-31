@@ -9,7 +9,15 @@ const TEMPLATE_FIELDS = function (props) {
     templateId,
     projectId,
     locales,
+    spriteIconConfig = {},
   } = props;
+
+  const {
+    supportsSpriteIcons = false,
+    spritePath = '',
+    pluginSpritePath = '',
+  } = spriteIconConfig;
+
   Vue.use(LocalePlugin, locales);
   Vue.use(CustomFieldPlugin, {
     baseUrl: loadSelectableFieldsPath,
@@ -17,8 +25,20 @@ const TEMPLATE_FIELDS = function (props) {
     projectId,
   });
 
+  const componentProps = { ...props };
+  delete componentProps.spriteIconConfig;
+
   new Vue({
-    render: (h) => h(JsonGenerator, { props })
+    provide() {
+      return {
+        spriteIconConfig: {
+          supportsSpriteIcons,
+          spritePath,
+          pluginSpritePath,
+        },
+      };
+    },
+    render: (h) => h(JsonGenerator, { props: componentProps })
   }).$mount('#json_generator');
 };
 

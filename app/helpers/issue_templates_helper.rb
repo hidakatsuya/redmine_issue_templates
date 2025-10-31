@@ -1,4 +1,6 @@
 module IssueTemplatesHelper
+  include IssueTemplatesIconHelper
+
   def project_tracker?(tracker, project)
     return false unless tracker.present?
 
@@ -6,9 +8,16 @@ module IssueTemplatesHelper
   end
 
   def non_project_tracker_msg(flag)
-    return '' if flag
+    return ''.html_safe if flag
 
-    "<font class=\"non_project_tracker\">#{l(:unused_tracker_at_this_project)}</font>".html_safe
+    content_tag(:span, class: 'non_project_tracker') do
+      safe_join(
+        [
+          sprite_icon_or_label(:issue_template_hint, nil, plugin: :redmine_issue_templates, icon_only: true),
+          content_tag(:span, l(:unused_tracker_at_this_project), class: 'icon-label')
+        ].compact
+      )
+    end
   end
 
   def template_target_trackers(project, issue_template)

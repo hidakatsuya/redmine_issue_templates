@@ -52,10 +52,10 @@ class ISSUE_TEMPLATE {
       const titleElement = document.getElementById('issue_template_dialog_title');
       titleElement.textContent = title;
 
-      const templateElements = document.querySelectorAll('i.template-update-link');
+      const templateElements = document.querySelectorAll('.template-update-link');
       Array.from(templateElements).forEach(el => {
-        el.addEventListener('click', (event) => {
-          this.updateTemplateSelect(event);
+        el.addEventListener('click', () => {
+          this.updateTemplateSelect(el);
         });
       });
     });
@@ -266,9 +266,20 @@ class ISSUE_TEMPLATE {
     if (obj.related_link != null && obj.related_link !== '') {
       relatedLink.setAttribute('href', obj.related_link);
       relatedLink.style.display = 'inline';
-      relatedLink.textContent = obj.link_title;
+      const label = relatedLink.querySelector('.icon-label');
+      if (label) {
+        label.textContent = obj.link_title;
+      } else {
+        relatedLink.textContent = obj.link_title;
+      }
     } else {
       relatedLink.style.display = 'none';
+      const label = relatedLink.querySelector('.icon-label');
+      if (label) {
+        label.textContent = '';
+      } else {
+        relatedLink.textContent = '';
+      }
     }
   }
   escapeHTML(val) {
@@ -384,8 +395,8 @@ class ISSUE_TEMPLATE {
       }
     }
   }
-  updateTemplateSelect(event) {
-    const link = event.target;
+  updateTemplateSelect(targetElement) {
+    const link = targetElement;
     const optionId = link.getAttribute('data-issue-template-id');
     let optionSelector = '#issue_template > optgroup > option[value="' + optionId + '"]';
     if (link.classList.contains('template-global')) {
@@ -494,8 +505,8 @@ document.onreadystatechange = () => {
     if (collapsibleHelps) {
       for (let i = 0; i < collapsibleHelps.length; i++) {
         const element = collapsibleHelps[i];
-        element.addEventListener('click', (event) => {
-          const targetName = event.target.getAttribute('data-template-help-target');
+        element.addEventListener('click', () => {
+          const targetName = element.getAttribute('data-template-help-target');
           const target = document.getElementById(targetName);
           if (target) {
             const style = target.style.display;

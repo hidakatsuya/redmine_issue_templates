@@ -24,7 +24,7 @@
       <a class='icon icon-help template-help' title='<%= l(:help_for_this_field) %>'
          data-tooltip-area='issue_title_help_area'
          data-tooltip-content='issue_title_help_content'>
-        <%= l(:help_for_this_field) %>
+        <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
         <span class='tooltip-area' id='issue_title_help_area'></span>
       </a>
     </p>
@@ -55,7 +55,7 @@
        data-template-help-target='related_link_help_content'
        data-tooltip-area='related_link_help_area'
        data-tooltip-content='related_link_help_content'>
-      <%= l(:help_for_this_field) %>
+      <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
       <span class='tooltip-area' id='related_link_help_area'></span>
     </a>
   </p>
@@ -65,7 +65,7 @@
        data-template-help-target='link_title_help_content'
        data-tooltip-area='link_title_help_area'
        data-tooltip-content='link_title_help_content'>
-      <%= l(:help_for_this_field) %>
+      <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
       <span class='tooltip-area' id='link_title_help_area'></span>
     </a>
   </p>
@@ -75,7 +75,7 @@
        data-template-help-target='isdefault_help_content'
        data-tooltip-area='isdefault_help_area'
        data-tooltip-content='isdefault_help_content'>
-      <%= l(:help_for_this_field) %>
+      <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
       <span class='tooltip-area' id='isdefault_help_area'></span>
     </a>
   </p>
@@ -85,7 +85,7 @@
        data-template-help-target='enabled_help_content'
        data-tooltip-area='enabled_help_area'
        data-tooltip-content='enabled_help_content'>
-      <%= l(:help_for_this_field) %>
+      <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
       <span class='tooltip-area' id='enabled_help_area'></span>
     </a>
   </p>
@@ -94,7 +94,7 @@
     <a class='icon icon-help template-help' title='<%= l(:help_for_this_field) %>'
        data-tooltip-area='enabledsharing_help_area'
        data-tooltip-content='enabledsharing_help_content'>
-      <%= l(:help_for_this_field) %>
+      <%= sprite_icon_or_label(:help, l(:help_for_this_field)) %>
       <span class='tooltip-area' id='enabledsharing_help_area'></span>
     </a>
   </p>
@@ -134,6 +134,11 @@
     trackerPulldownId: 'issue_template_tracker_id',
     builtinFields: <%= issue_template.builtin_fields.html_safe %>,
     locales: <%= raw localize_to_script.to_json %>,
+    spriteIconConfig: {
+      supportsSpriteIcons: <%= respond_to?(:sprite_icon) %>,
+      spritePath: "<%= asset_path('icons.svg') %>",
+      pluginSpritePath: "<%= asset_path('plugin_assets/redmine_issue_templates/icons.svg') %>",
+    },
   });
 </script>
 <% end %>

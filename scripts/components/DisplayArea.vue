@@ -11,13 +11,21 @@
             : {{ item.value }} / {{ item.title }}
           </i>
         </span>
-        <i class="icon-only icon-del" v-on:click="$emit('delete', item)"></i>
+        <span class="icon-only icon-del" v-on:click="$emit('delete', item)">
+          <sprite-icon-or-label
+            icon="del"
+            :label="l('button_delete')"
+            :icon-only="true"
+          />
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import SpriteIconOrLabel from './SpriteIconOrLabel.vue';
+
 export default {
   name: 'DisplayArea',
   props: {
@@ -27,6 +35,9 @@ export default {
         return [];
       },
     },
+  },
+  components: {
+    SpriteIconOrLabel,
   },
 };
 </script>

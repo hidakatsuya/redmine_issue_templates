@@ -1,0 +1,8 @@
+- name: template
+  svg: template
+- name: template_preview
+  svg: eye
+- name: issue_template_hint
+  svg: bulb
+- name: issue_template_erase
+  svg: eraser

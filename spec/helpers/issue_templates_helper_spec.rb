@@ -23,7 +23,7 @@ describe IssueTemplatesHelper do
 
   describe '#non_project_tracker_msg' do
     it { expect(helper.non_project_tracker_msg(true)).to eq '' }
-    it { expect(helper.non_project_tracker_msg(false)).to match('<font class="non_project_tracker">') }
+    it { expect(helper.non_project_tracker_msg(false)).to match('<span class="non_project_tracker">') }
   end
 
   describe '#template_target_trackers' do
